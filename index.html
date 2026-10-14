@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Nafiz Mozumdar: student in Cumilla. Education, experience, CV and contact.">
+<style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Fizz's Hub</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+Bengali:wght@400;500;600&family=Manrope:wght@400;500;600&family=Anek+Bangla:wght@400;500;600&family=Tiro+Bangla:ital@0;1&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+/* Layout: one long page, sticky scrolling nav; hero pairs text with a crescent-framed portrait; sections are plain ruled blocks. */
+:root{
+  --bg:#F5E9D8; --surface:#FBF5EB; --fg:#1E1712; --muted:#6B5A48; --line:#E0CFB6;
+  --accent:#8A5A2B; --accent-ink:#FFF8EE; --accent-soft:#EBD8BC;
+  --gold:#8F6A3F; --glow:rgba(156,107,60,.2);
+  --glow-a:rgba(196,154,108,.4); --glow-b:rgba(138,90,43,.14); --grain:.07;
+  --shadow:0 1px 2px rgba(30,20,20,.05),0 14px 34px -14px rgba(30,20,20,.2);
+  --qr-bg:#FFFFFF; --qr-fg:#111111;
+  --font-display:"Cormorant Garamond","Noto Serif Bengali",Georgia,serif;
+  --font-body:"Manrope","Anek Bangla","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14100E; --surface:#1E1814; --fg:#F5E9D8; --muted:#B3A28E; --line:#34291F;
+    --accent:#C49A6C; --accent-ink:#14100E; --accent-soft:#2B2016; color-scheme:dark;
+    --gold:#B5835A; --glow:rgba(196,154,108,.18);
+    --glow-a:rgba(196,154,108,.2); --glow-b:rgba(138,90,43,.2); --grain:.1;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 42px -18px rgba(0,0,0,.75);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14100E; --surface:#1E1814; --fg:#F5E9D8; --muted:#B3A28E; --line:#34291F;
+  --accent:#C49A6C; --accent-ink:#14100E; --accent-soft:#2B2016; color-scheme:dark;
+    --gold:#B5835A; --glow:rgba(196,154,108,.18);
+    --glow-a:rgba(196,154,108,.2); --glow-b:rgba(138,90,43,.2); --grain:.1;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 42px -18px rgba(0,0,0,.75);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.65}
+/* premium backdrop: soft warm light from the corners plus fine film grain */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 50% at 100% 0%,var(--glow-a),transparent 70%),radial-gradient(60% 45% at 0% 55%,var(--glow-b),transparent 70%),radial-gradient(55% 40% at 85% 100%,var(--glow-b),transparent 70%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:960px;margin-inline:auto;padding-inline:20px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding-block:10px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.3rem;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.brand svg{width:22px;height:22px;flex:none}
+nav{display:flex;gap:4px;overflow-x:auto;min-width:0;scrollbar-width:none;flex:1}
+nav::-webkit-scrollbar{display:none}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:999px;font-size:.95rem;font-weight:500}
+nav a:hover{color:var(--fg);background:var(--surface)}
+
+/* sections */
+section{padding-block:clamp(56px,10vw,104px);border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);flex:none}
+:lang(bn) .eyebrow{letter-spacing:.03em;font-size:.9rem}
+:lang(bn) h1,:lang(bn) h2{letter-spacing:0}
+:lang(bn) .hero h1{line-height:1.2}
+h2{font-size:clamp(2.1rem,6vw,3.3rem);font-weight:600;letter-spacing:-.01em;margin-bottom:36px}
+.lead{font-size:1.1rem;max-width:62ch}
+.prose{display:grid;gap:1.3em;max-width:68ch}
+.prose p{font-size:1.08rem}
+:lang(bn) .prose p{line-height:1.9}
+
+/* hero */
+#home{padding-block:clamp(48px,9vw,112px)}
+.hero{max-width:760px}
+.hero h1{font-size:clamp(2.8rem,11vw,6rem);font-weight:600;letter-spacing:-.015em;line-height:1}
+.role{margin-top:12px;font-size:1.15rem;color:var(--muted)}
+:lang(en) .role{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:600;font-size:1.9rem;line-height:1.2;color:var(--gold)}
+:lang(bn) .role{font-family:"Tiro Bangla","Noto Serif Bengali",Georgia,serif;font-style:italic;font-size:1.35rem;line-height:1.5;color:var(--gold)}
+.hero .lead{margin-top:20px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{font:inherit;font-weight:600;border:1.5px solid var(--accent);border-radius:999px;padding:13px 28px;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.3}
+.btn.primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 24px -10px var(--accent)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.portrait{justify-self:center;width:min(100%,300px);aspect-ratio:1;position:relative;isolation:isolate}
+.portrait::before{content:"";position:absolute;inset:-22%;background:radial-gradient(closest-side,var(--glow),transparent);z-index:-1}
+.portrait svg{width:100%;height:100%;display:block}
+.portrait .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,10vw,4.6rem);color:var(--fg);letter-spacing:-.03em;padding-top:6%}
+@media (max-width:720px){.hero{grid-template-columns:minmax(0,1fr)}.portrait{order:-1;width:min(60%,220px);justify-self:start}}
+
+/* about */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:32px}
+.cols>*{min-width:0}
+h3{font-size:1.45rem;font-weight:600;margin-bottom:12px}
+ul.plain{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.plain li{padding-left:22px;position:relative}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--accent)}
+
+/* timeline (education, red crescent) */
+.tl{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 24px;padding-block:30px;border-top:1px solid var(--line)}
+.tl li:last-child{border-bottom:1px solid var(--line)}
+.tl .when{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
+.tl h3{margin-bottom:4px}
+.tl.solo li{grid-template-columns:minmax(0,1fr)}
+.tl p{color:var(--muted)}
+@media (max-width:620px){.tl li{grid-template-columns:minmax(0,1fr)}}
+
+/* social */
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+@media (prefers-reduced-motion:reduce){.links a{transition:none}.links a:hover{transform:none!important}}
+.links a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.links b{font-family:var(--font-display);font-weight:600;font-size:1.4rem;display:block}
+.links small{color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}
+.links span.go{color:var(--accent);font-size:1.2rem;flex:none}
+
+/* cv */
+.cvbar{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-bottom:20px}
+.cvbar small{color:var(--muted)}
+.paper{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:6px;padding:clamp(24px,6vw,56px);max-width:780px;box-shadow:var(--shadow)}
+.paper h3{font-size:2.4rem;margin:0}
+.paper .sub{color:var(--muted);margin-top:2px}
+.cvhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 32px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.cvhead>*{min-width:0}
+.cvcontact{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.95rem;color:var(--muted);overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);background:var(--accent-soft);border-radius:999px;padding:5px 16px;font-size:.95rem}
+.paper h4{font-family:var(--font-body);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:26px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+:lang(bn) .paper h4{letter-spacing:0;text-transform:none;font-size:1rem}
+.paper .row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 16px;margin-bottom:10px}
+.paper .row .when{color:var(--muted);font-size:.95rem;font-variant-numeric:tabular-nums}
+.paper .row p{color:var(--muted);font-size:.95rem}
+@media (max-width:560px){.paper .row{grid-template-columns:minmax(0,1fr)}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px}
+@media (max-width:720px){.contact{grid-template-columns:minmax(0,1fr)}}
+.addr{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+.addr code{font-family:var(--font-body);background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:8px;overflow-wrap:anywhere;user-select:all}
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
+input,textarea{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px;width:100%}
+textarea{min-height:130px;resize:vertical}
+.out{background:var(--accent-soft);border-radius:12px;padding:18px;display:grid;gap:12px}
+.out pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--font-body);font-size:.95rem}
+.status{min-height:1.5em;color:var(--muted);font-size:.92rem}
+
+/* settings */
+.set{display:grid;gap:22px;max-width:560px}
+.set .item{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px}
+.seg button{font:inherit;font-size:.95rem;border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:8px;cursor:pointer;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* qr */
+.qr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:620px){.qr{grid-template-columns:minmax(0,1fr)}}
+.qrbox{background:var(--qr-bg);padding:16px;border-radius:12px;border:1px solid var(--line);width:232px;height:232px;display:grid;place-items:center}
+.qrbox svg{width:100%;height:100%;display:block}
+.qr .fields{display:grid;gap:14px;max-width:480px}
+footer{padding-block:32px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--accent)"/><circle cx="15.5" cy="12" r="8.6" fill="var(--bg)"/></svg>
+      <span data-bind="shortname"></span>
+    </div>
+    <nav aria-label="Sections" id="nav"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="home">
+    <div class="hero">
+      <div>
+        <div class="eyebrow" data-i18n="hello"></div>
+        <h1 data-bind="name"></h1>
+        <p class="role" data-bind="role"></p>
+        <p class="lead" data-bind="intro"></p>
+        <div class="btns">
+          <a class="btn primary" href="#cv" data-i18n="btnCv"></a>
+          <a class="btn ghost" href="#contact" data-i18n="btnContact"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="eyebrow" data-i18n="aboutEyebrow"></div>
+    <h2 data-i18n="about"></h2>
+    <div class="prose" id="aboutBody"></div>
+  </section>
+
+  <section id="education">
+    <div class="eyebrow" data-i18n="eduEyebrow"></div>
+    <h2 data-i18n="education"></h2>
+    <ol class="tl" id="eduList"></ol>
+  </section>
+
+  <section id="social">
+    <div class="eyebrow" data-i18n="socialEyebrow"></div>
+    <h2 data-i18n="social"></h2>
+    <div class="links" id="socialList"></div>
+  </section>
+
+  <section id="experience">
+    <div class="eyebrow" data-i18n="expEyebrow"></div>
+    <h2 data-i18n="experience"></h2>
+    <ul class="tl solo" id="expList"></ul>
+  </section>
+
+  <section id="cv">
+    <div class="eyebrow" data-i18n="cvEyebrow"></div>
+    <h2 data-i18n="cv"></h2>
+    <div class="cvbar">
+      <button class="btn primary" id="pdfBtn" type="button" data-i18n="btnPdf"></button>
+      <small data-i18n="pdfNote"></small>
+      <small id="pdfStatus" role="status"></small>
+    </div>
+    <article class="paper" id="cvPaper"></article>
+  </section>
+
+  <section id="contact">
+    <div class="eyebrow" data-i18n="contactEyebrow"></div>
+    <h2 data-i18n="contact"></h2>
+    <div class="contact">
+      <div>
+        <p class="lead" data-i18n="contactIntro"></p>
+        <div class="addr">
+          <code id="emailAddr">yourname@example.com</code>
+          <button class="btn ghost" type="button" id="copyEmail" data-i18n="copy"></button>
+        </div>
+        <p class="status" id="emailStatus" role="status"></p>
+      </div>
+      <div>
+        <form id="contactForm" novalidate>
+          <label for="cName"><span data-i18n="fName"></span><input id="cName" name="name" autocomplete="name"></label>
+          <label for="cEmail"><span data-i18n="fEmail"></span><input id="cEmail" name="email" type="email" autocomplete="email"></label>
+          <label for="cMsg"><span data-i18n="fMsg"></span><textarea id="cMsg" name="message"></textarea></label>
+          <div><button class="btn primary" type="submit" data-i18n="fSend"></button></div>
+          <p class="status" id="formStatus" role="status"></p>
+        </form>
+        <div class="out" id="draftOut" hidden>
+          <p data-i18n="draftNote"></p>
+          <pre id="draftText"></pre>
+          <div class="btns" style="margin:0">
+            <button class="btn primary" type="button" id="copyDraft" data-i18n="copyMsg"></button>
+            <a class="btn ghost" id="mailLink" href="#" data-i18n="openMail"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="settings">
+    <div class="eyebrow" data-i18n="setEyebrow"></div>
+    <h2 data-i18n="settings"></h2>
+    <div class="set">
+      <div class="item">
+        <div><h3 style="margin:0" data-i18n="language"></h3></div>
+        <div class="seg" role="group" aria-label="Language" id="langSeg">
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="bn">বাংলা</button>
+        </div>
+      </div>
+      <div class="item">
+        <div><h3 style="margin:0" data-i18n="theme"></h3></div>
+        <div class="seg" role="group" aria-label="Theme" id="themeSeg">
+          <button type="button" data-theme-set="system" data-i18n="themeSystem"></button>
+          <button type="button" data-theme-set="light" data-i18n="themeLight"></button>
+          <button type="button" data-theme-set="dark" data-i18n="themeDark"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="qr">
+    <div class="eyebrow" data-i18n="qrEyebrow"></div>
+    <h2 data-i18n="qr"></h2>
+    <div class="qr">
+      <div class="qrbox" id="qrBox" role="img" aria-label="QR code"></div>
+      <div class="fields">
+        <p data-i18n="qrIntro"></p>
+        <label for="qrUrl"><span data-i18n="qrUrl"></span><input id="qrUrl" type="url" inputmode="url"></label>
+        <div><button class="btn primary" type="button" id="qrSave" data-i18n="qrSave"></button></div>
+        <p class="status" id="qrStatus" role="status"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap"><span data-bind="footer"></span></footer>
+
+<script>
+/* ===== Content: replace the sample entries below with real details. ===== */
+const DATA = {
+  name:{en:"Nafiz Mozumdar",bn:"নাফিজ মজুমদার"},
+  shortname:{en:"Fizz's Hub",bn:"Fizz's Hub"},
+  about:{
+    en:[
+      "I am Nafiz Mozumdar, a dreamer, a student, a lover of nature and a believer in humane values. I am currently studying at Cumilla Victoria Government College, Kandirpar, Cumilla, and preparing for my HSC examination in 2027. I completed my SSC in 2025 from Bidyut Unnayan Board High School, Jangalia.",
+      "For me, education is not limited to the pages of a textbook. Every new experience, every identity and every chapter of life is a new source of learning. So alongside my studies, I try to widen the range of my knowledge, skills and experience. Out of personal fulfilment, a sense of humane responsibility and love for people, I take part in the activities of various humanitarian organisations in my area and my college. Standing by people, bringing a smile to the face of the helpless and contributing even a little to the welfare of society is a special reward for me.",
+      "Travelling is one of my favourite passions. I love discovering the unknown, following unfamiliar paths and losing myself in the boundless beauty of nature. The silence of the hills, the mysterious atmosphere of the forest, a road wrapped in clouds, or an adventure that is thrilling and a little frightening: all of these draw my wandering heart even more. I believe every journey is not only the discovery of a new place, but also a chance to discover a new self within me."
+    ],
+    bn:[
+      "আমি নাফিজ মজুমদার—একজন স্বপ্নবাজ শিক্ষার্থী, প্রকৃতিপ্রেমী ও মানবিক মূল্যবোধে বিশ্বাসী মানুষ। বর্তমানে কুমিল্লা ভিক্টোরিয়া সরকারি কলেজ, কান্দিরপাড়, কুমিল্লায় অধ্যয়নরত এবং ২০২৭ সালের এইচএসসি পরীক্ষার জন্য নিজেকে প্রস্তুত করছি। ২০২৫ সালে জাঙ্গালিয়া বিদ্যুৎ উন্নয়ন বোর্ড উচ্চ বিদ্যালয় থেকে এসএসসি সম্পন্ন করেছি।",
+      "আমার কাছে শিক্ষা শুধু পাঠ্যবইয়ের পাতায় সীমাবদ্ধ নয়; বরং প্রতিটি নতুন অভিজ্ঞতা, প্রতিটি পরিচয় এবং জীবনের প্রতিটি অধ্যায়ই একেকটি নতুন শিক্ষার উৎস। তাই পড়াশোনার পাশাপাশি নিজের জ্ঞান, দক্ষতা ও অভিজ্ঞতার পরিধি বিস্তৃত করার চেষ্টা করি। আত্মতৃপ্তি, মানবিক দায়বদ্ধতা এবং মানুষের প্রতি ভালোবাসা থেকে নিজ এলাকা ও কলেজের বিভিন্ন মানবিক সংগঠনের কার্যক্রমে যুক্ত আছি। মানুষের পাশে দাঁড়ানো, অসহায়ের মুখে হাসি ফোটানো এবং সমাজের কল্যাণে সামান্য হলেও অবদান রাখা আমার কাছে এক বিশেষ প্রাপ্তি।",
+      "ভ্রমণ আমার অন্যতম প্রিয় নেশা। অজানাকে জানা, অচেনা পথ ধরে এগিয়ে যাওয়া এবং প্রকৃতির অপার সৌন্দর্যের মাঝে নিজেকে হারিয়ে ফেলতে আমি ভালোবাসি। পাহাড়ের নীরবতা, বনের রহস্যময় পরিবেশ, মেঘে ঢাকা পথ কিংবা রোমাঞ্চে ভরা কিছুটা ভয়ংকর অভিজ্ঞতা—এসবই আমার ভ্রমণপিপাসু মনকে আরও বেশি আকৃষ্ট করে। আমি বিশ্বাস করি, প্রতিটি ভ্রমণ শুধু নতুন কোনো স্থান আবিষ্কার নয়, বরং নিজের ভেতরের নতুন এক সত্তাকে আবিষ্কার করারও সুযোগ।"
+    ]
+  },
+  role:{en:"Student, Cumilla Victoria Government College",bn:"শিক্ষার্থী, কুমিল্লা ভিক্টোরিয়া সরকারি কলেজ"},
+  intro:{en:"I am a college student in Cumilla. This is where you can find my education, my experience and how to reach me.",bn:"আমি কুমিল্লার একজন কলেজশিক্ষার্থী। এখানে আমার শিক্ষা, অভিজ্ঞতা এবং যোগাযোগের মাধ্যম পাবেন।"},
+  aboutText:{en:"A dreamer, student and nature lover who believes in humane values. Studying at Cumilla Victoria Government College (HSC 2027) after completing SSC in 2025. Active in humanitarian organisations in my area and college, with experience in sales operating, freelancing and organisational roles, and a passion for travelling.",bn:"একজন স্বপ্নবাজ শিক্ষার্থী, প্রকৃতিপ্রেমী ও মানবিক মূল্যবোধে বিশ্বাসী। ২০২৫ সালে এসএসসি সম্পন্ন করে বর্তমানে কুমিল্লা ভিক্টোরিয়া সরকারি কলেজে অধ্যয়নরত (এইচএসসি ২০২৭)। নিজ এলাকা ও কলেজের বিভিন্ন মানবিক সংগঠনে সক্রিয়; সেলস অপারেটিং, ফ্রিল্যান্সিং ও সাংগঠনিক দায়িত্বের অভিজ্ঞতা রয়েছে এবং ভ্রমণে গভীর আগ্রহ।"},
+  education:[
+    {when:{en:"Expected 2027",bn:"২০২৭ (প্রত্যাশিত)"},title:{en:"Higher Secondary Certificate (HSC)",bn:"উচ্চ মাধ্যমিক সার্টিফিকেট (এইচএসসি)"},place:{en:"Cumilla Victoria Government College, Kandirpar, Cumilla",bn:"কুমিল্লা ভিক্টোরিয়া সরকারি কলেজ, কান্দিরপাড়, কুমিল্লা"}},
+    {when:{en:"2025",bn:"২০২৫"},title:{en:"Secondary School Certificate (SSC)",bn:"মাধ্যমিক স্কুল সার্টিফিকেট (এসএসসি)"},place:{en:"Bidyut Unnayan Board High School, Jangalia, Cumilla",bn:"বিদ্যুৎ উন্নয়ন বোর্ড উচ্চ বিদ্যালয়, জাঙ্গালিয়া, কুমিল্লা"}}
+  ],
+  social:[
+    {name:"Facebook",handle:{en:"My Facebook profile",bn:"আমার ফেসবুক প্রোফাইল"},url:"https://www.facebook.com/share/1BswUHSBQh/"},
+    {name:"Instagram",handle:"@tanveer_h_fizz",url:"https://www.instagram.com/tanveer_h_fizz?dlrf=cjB5cXJ1MjIxbWx5"}
+  ],
+  exp:[
+    {title:{en:"Sales Operating",bn:"সেলস অপারেটিং"}},
+    {title:{en:"Basic Computer",bn:"বেসিক কম্পিউটার"}},
+    {title:{en:"Freelancing",bn:"ফ্রিল্যান্সিং"}},
+    {title:{en:"Member",bn:"সদস্য"},place:{en:"BD Clean, Cumilla Unit",bn:"বিডি ক্লিন, কুমিল্লা ইউনিট"}},
+    {title:{en:"Deputy Team Leader",bn:"ডেপুটি টিম লিডার"},place:{en:"Red Crescent Youth, CVGC Unit",bn:"রেড ক্রিসেন্ট ইয়ুথ, সিভিজিসি ইউনিট"}},
+    {title:{en:"IT Secretary",bn:"আইটি সেক্রেটারি"},place:{en:"BYSO, Sadar South, Cumilla Unit",bn:"বিওয়াইএসও, সদর দক্ষিণ, কুমিল্লা ইউনিট"}}
+  ],
+  interests:{en:["Travelling","Nature and the outdoors","Humanitarian work"],bn:["ভ্রমণ","প্রকৃতি","মানবিক কাজ"]},
+  email:"nafizmozumder02@gmail.com",
+  footer:{en:"© 2026 Fizz's Hub, Nafiz Mozumdar",bn:"© ২০২৬ Fizz's Hub, নাফিজ মজুমদার"}
+};
+
+const T = {
+  en:{
+    nav:{home:"Home",about:"About Me",education:"Education",social:"Social Media",experience:"Experience",cv:"CV",contact:"Contact",settings:"Settings",qr:"QR Code"},
+    hello:"Hello, I am",btnCv:"View my CV",btnContact:"Contact me",
+    aboutEyebrow:"Who I am",about:"About Me",interests:"Interests",goals:"Goals",
+    eduEyebrow:"Where I study",education:"Education",
+    socialEyebrow:"Find me online",social:"Social Media",
+    expEyebrow:"What I have done",experience:"Experience",
+    cvEyebrow:"Resume",cv:"CV / Resume",btnPdf:"Download CV as PDF",pdfNote:"The PDF is in English.",
+    cvSummary:"Summary",cvEdu:"Education",cvExp:"Experience",cvInt:"Interests",cvSkills:"Skills",cvLang:"Languages",cvContact:"Contact",
+    pdfBusy:"Preparing PDF…",pdfSaved:"PDF saved.",pdfDeclined:"Download cancelled.",pdfNo:"Download is not available in this view.",pdfErr:"Could not create the PDF.",
+    contactEyebrow:"Say hello",contact:"Contact",contactIntro:"Write to me by email or use the form to prepare a message.",
+    copy:"Copy",copied:"Copied.",copyFail:"Copy failed. Select the text and copy it.",
+    fName:"Your name",fEmail:"Your email",fMsg:"Message",fSend:"Prepare message",
+    fMissing:"Please fill in your name, a valid email and a message.",
+    draftNote:"This site cannot send email by itself. Copy the message below or open it in your mail app.",
+    copyMsg:"Copy message",openMail:"Open in mail app",
+    setEyebrow:"Preferences",settings:"Settings",language:"Language",theme:"Appearance",themeSystem:"System",themeLight:"Light",themeDark:"Dark",
+    qrEyebrow:"Share",qr:"QR Code",qrIntro:"Scan this code to open the website. Change the address if you publish the site somewhere else.",qrUrl:"Website address",qrSave:"Save QR code (SVG)",
+    qrSaved:"QR code saved.",qrNeed:"Enter a full web address that starts with https://",
+    msgHello:"Hello",msgFrom:"From"
+  },
+  bn:{
+    nav:{home:"হোম",about:"আমার সম্পর্কে",education:"শিক্ষা",social:"সোশ্যাল মিডিয়া",experience:"অভিজ্ঞতা",cv:"সিভি",contact:"যোগাযোগ",settings:"সেটিংস",qr:"কিউআর কোড"},
+    hello:"আমি",btnCv:"আমার সিভি দেখুন",btnContact:"যোগাযোগ করুন",
+    aboutEyebrow:"আমি কে",about:"আমার সম্পর্কে",interests:"আগ্রহ",goals:"লক্ষ্য",
+    eduEyebrow:"যেখানে পড়ি",education:"শিক্ষা",
+    socialEyebrow:"অনলাইনে আমি",social:"সোশ্যাল মিডিয়া",
+    expEyebrow:"আমার কাজ",experience:"অভিজ্ঞতা",
+    cvEyebrow:"জীবনবৃত্তান্ত",cv:"সিভি / রেজিউমে",btnPdf:"সিভি পিডিএফ হিসেবে ডাউনলোড",pdfNote:"পিডিএফটি ইংরেজিতে তৈরি হবে।",
+    cvSummary:"সারসংক্ষেপ",cvEdu:"শিক্ষা",cvExp:"অভিজ্ঞতা",cvInt:"আগ্রহ",cvSkills:"দক্ষতা",cvLang:"ভাষা",cvContact:"যোগাযোগ",
+    pdfBusy:"পিডিএফ তৈরি হচ্ছে…",pdfSaved:"পিডিএফ সংরক্ষিত হয়েছে।",pdfDeclined:"ডাউনলোড বাতিল হয়েছে।",pdfNo:"এই ভিউতে ডাউনলোড সম্ভব নয়।",pdfErr:"পিডিএফ তৈরি করা যায়নি।",
+    contactEyebrow:"কথা বলুন",contact:"যোগাযোগ",contactIntro:"ইমেইলে লিখুন, অথবা ফর্ম ব্যবহার করে বার্তা তৈরি করুন।",
+    copy:"কপি",copied:"কপি হয়েছে।",copyFail:"কপি হয়নি। লেখাটি নির্বাচন করে কপি করুন।",
+    fName:"আপনার নাম",fEmail:"আপনার ইমেইল",fMsg:"বার্তা",fSend:"বার্তা তৈরি করুন",
+    fMissing:"নাম, সঠিক ইমেইল ও বার্তা লিখুন।",
+    draftNote:"এই সাইট নিজে ইমেইল পাঠাতে পারে না। নিচের বার্তাটি কপি করুন বা মেইল অ্যাপে খুলুন।",
+    copyMsg:"বার্তা কপি করুন",openMail:"মেইল অ্যাপে খুলুন",
+    setEyebrow:"পছন্দ",settings:"সেটিংস",language:"ভাষা",theme:"চেহারা",themeSystem:"সিস্টেম",themeLight:"লাইট",themeDark:"ডার্ক",
+    qrEyebrow:"শেয়ার",qr:"কিউআর কোড",qrIntro:"ওয়েবসাইট খুলতে এই কোড স্ক্যান করুন। সাইট অন্য কোথাও প্রকাশ করলে ঠিকানা বদলে নিন।",qrUrl:"ওয়েবসাইটের ঠিকানা",qrSave:"কিউআর কোড সংরক্ষণ (SVG)",
+    qrSaved:"কিউআর কোড সংরক্ষিত হয়েছে।",qrNeed:"https:// দিয়ে শুরু হওয়া পূর্ণ ঠিকানা লিখুন।",
+    msgHello:"হ্যালো",msgFrom:"প্রেরক"
+  }
+};
+const NAV_IDS=["home","about","education","social","experience","cv","contact","settings","qr"];
+
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+let lang = store("lang")==="bn" ? "bn" : "en";
+let themePref = ["light","dark"].includes(store("theme")) ? store("theme") : "system";
+
+function t(key){return T[lang][key]}
+
+function render(){
+  document.documentElement.lang = lang;
+  $$("[data-i18n]").forEach(el=>{el.textContent=T[lang][el.dataset.i18n]});
+  $$("[data-bind]").forEach(el=>{el.textContent=DATA[el.dataset.bind][lang]});
+
+  $("#nav").innerHTML = NAV_IDS.map(id=>`<a href="#${id}">${esc(T[lang].nav[id])}</a>`).join("");
+      $("#eduList").innerHTML = DATA.education.map(e=>`<li><div class="when">${esc(e.when[lang])}</div><div><h3>${esc(e.title[lang])}</h3><p>${esc(e.place[lang])}</p></div></li>`).join("");
+  $("#aboutBody").innerHTML = DATA.about[lang].map(p=>`<p>${esc(p)}</p>`).join("");
+  $("#expList").innerHTML = DATA.exp.map(e=>`<li><div><h3>${esc(e.title[lang])}</h3>${e.place?`<p>${esc(e.place[lang])}</p>`:""}</div></li>`).join("");
+  $("#socialList").innerHTML = DATA.social.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener"><span><b>${esc(s.name)}</b><small>${esc(typeof s.handle==="object"?s.handle[lang]:s.handle)}</small></span><span class="go" aria-hidden="true">↗</span></a>`).join("");
+
+  const tt=T[lang];
+  $("#cvPaper").innerHTML =
+    `<header class="cvhead"><div><h3>${esc(DATA.name[lang])}</h3><p class="sub">${esc(DATA.role[lang])}</p></div>`+
+    `<ul class="cvcontact"><li>${esc(DATA.email)}</li>${DATA.social.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></li>`).join("")}</ul></header>`+
+    `<h4>${esc(tt.cvSummary)}</h4><p>${esc(DATA.aboutText[lang])}</p>`+
+    `<h4>${esc(tt.cvEdu)}</h4>`+DATA.education.map(e=>`<div class="row"><div class="when">${esc(e.when[lang])}</div><div><strong>${esc(e.title[lang])}</strong><p>${esc(e.place[lang])}</p></div></div>`).join("")+
+    `<h4>${esc(tt.cvExp)}</h4>`+DATA.exp.map(e=>`<div style="margin-bottom:10px"><strong>${esc(e.title[lang])}</strong>${e.place?`<p style="color:var(--muted);font-size:.95rem">${esc(e.place[lang])}</p>`:""}</div>`).join("")+
+    `<h4>${esc(tt.cvInt)}</h4><div class="chips">${DATA.interests[lang].map(i=>`<span>${esc(i)}</span>`).join("")}</div>`;
+
+  $("#emailAddr").textContent = DATA.email;
+  $$("#langSeg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+  $$("#themeSeg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.themeSet===themePref)));
+  document.title = "Fizz's Hub";
+}
+
+function applyTheme(){
+  const r=document.documentElement;
+  if(themePref==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",themePref);
+}
+
+/* settings */
+$("#langSeg").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-lang]"); if(!b) return;
+  lang=b.dataset.lang; store("lang",lang); render(); drawQr();
+});
+$("#themeSeg").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-theme-set]"); if(!b) return;
+  themePref=b.dataset.themeSet; store("theme",themePref); applyTheme(); render();
+});
+
+/* copy helper with fallback */
+async function copyText(text, statusEl, sourceEl){
+  try{
+    await navigator.clipboard.writeText(text);
+    statusEl.textContent=t("copied");
+  }catch(e){
+    if(sourceEl){
+      const r=document.createRange(); r.selectNodeContents(sourceEl);
+      const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    statusEl.textContent=t("copyFail");
+  }
+}
+$("#copyEmail").addEventListener("click",()=>copyText(DATA.email,$("#emailStatus"),$("#emailAddr")));
+
+/* contact form: prepares a message, since a static page cannot send mail */
+$("#contactForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#cName").value.trim(), email=$("#cEmail").value.trim(), msg=$("#cMsg").value.trim();
+  const ok=name && /^\S+@\S+\.\S+$/.test(email) && msg;
+  const st=$("#formStatus");
+  if(!ok){st.textContent=t("fMissing");$("#draftOut").hidden=true;return}
+  st.textContent="";
+  const body=`${t("msgHello")} ${DATA.name[lang]},\n\n${msg}\n\n${t("msgFrom")}: ${name} (${email})`;
+  $("#draftText").textContent=body;
+  $("#mailLink").href="mailto:"+DATA.email+"?subject="+encodeURIComponent(name)+"&body="+encodeURIComponent(body);
+  $("#draftOut").hidden=false;
+});
+$("#copyDraft").addEventListener("click",()=>copyText($("#draftText").textContent,$("#formStatus"),$("#draftText")));
+
+/* save a generated file: uses the host's download service when present, else a normal browser download */
+async function saveFile(filename,data,mime){
+  let dl=null;
+  try{ if(window.claude&&window.claude.use) dl=await window.claude.use("downloads"); }catch(e){}
+  if(dl){ await dl.save({filename:filename,data:data}); return; }
+  const url=URL.createObjectURL(new Blob([data],{type:mime}));
+  const a=document.createElement("a"); a.href=url; a.download=filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),4000);
+}
+
+/* CV to PDF (English) */
+function buildPdf(){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"pt",format:"a4"});
+  const L=56, W=483; let y=64;
+  const room=n=>{if(y+n>790){doc.addPage();y=64}};
+  const text=(s,size,style,rgb,gap)=>{
+    doc.setFont("helvetica",style); doc.setFontSize(size); doc.setTextColor(...rgb);
+    doc.splitTextToSize(s,W).forEach(line=>{room(size*1.4);doc.text(line,L,y);y+=size*1.4});
+    y+=gap||0;
+  };
+  const head=s=>{y+=10;room(40);text(s.toUpperCase(),9,"bold",[196,18,47],2);doc.setDrawColor(210);doc.line(L,y-4,L+W,y-4);y+=6};
+  text(DATA.name.en,26,"bold",[30,26,27],2);
+  text(DATA.role.en,12,"normal",[103,95,96],6);
+  text(DATA.email,10,"normal",[103,95,96],0);
+  head(T.en.cvSummary); text(DATA.aboutText.en,10.5,"normal",[40,36,37],0);
+  head(T.en.cvEdu);
+  DATA.education.forEach(e=>{text(e.title.en+"  ("+e.when.en+")",10.5,"bold",[30,26,27],0);text(e.place.en,10,"normal",[103,95,96],6)});
+  head(T.en.cvExp);
+  DATA.exp.forEach(e=>{text(e.title.en,10.5,"bold",[30,26,27],e.place?0:6);if(e.place)text(e.place.en,10,"normal",[103,95,96],6)});
+    head(T.en.cvInt); text(DATA.interests.en.join(", "),10.5,"normal",[40,36,37],0);
+  head(T.en.cvContact);
+  DATA.social.forEach(x=>text(x.name+": "+x.url,9.5,"normal",[103,95,96],2));
+  return doc.output("arraybuffer");
+}
+$("#pdfBtn").addEventListener("click",async()=>{
+  const st=$("#pdfStatus");
+  try{
+    st.textContent=t("pdfBusy");
+    const buf=buildPdf();
+    await saveFile("Nafiz-Mozumdar-CV.pdf",buf,"application/pdf");
+    st.textContent=t("pdfSaved");
+  }catch(err){
+    st.textContent = err&&err.code==="declined" ? t("pdfDeclined") : (err&&err.code ? t("pdfNo") : t("pdfErr"));
+  }
+});
+
+/* QR */
+let lastSvg="";
+function drawQr(){
+  const url=$("#qrUrl").value.trim();
+  const box=$("#qrBox");
+  if(!/^https?:\/\/\S+$/.test(url)){box.textContent="";lastSvg="";$("#qrStatus").textContent=t("qrNeed");return}
+  $("#qrStatus").textContent="";
+  try{
+    const qr=qrcode(0,"M"); qr.addData(url); qr.make();
+    lastSvg=qr.createSvgTag({cellSize:4,margin:0,scalable:true});
+    box.innerHTML=lastSvg;
+  }catch(e){box.textContent="";lastSvg=""}
+}
+$("#qrUrl").addEventListener("input",drawQr);
+$("#qrSave").addEventListener("click",async()=>{
+  if(!lastSvg){$("#qrStatus").textContent=t("qrNeed");return}
+  try{
+    const svg=lastSvg.replace("<svg",'<svg xmlns="http://www.w3.org/2000/svg" style="background:#fff"');
+    await saveFile("website-qr.svg",svg,"image/svg+xml");
+    $("#qrStatus").textContent=t("qrSaved");
+  }catch(err){$("#qrStatus").textContent = err&&err.code==="declined" ? t("pdfDeclined") : t("pdfNo")}
+});
+
+applyTheme();
+render();
+$("#qrUrl").value = location.href.split("#")[0];
+drawQr();
+</script>
+
+</body>
+</html>
